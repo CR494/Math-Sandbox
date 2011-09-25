@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create">
+	<property name="dir.src" location="src" />
+    <property name="dir.bin" location="bin" />
+	<property name="dir.dist" location="dist" />
+	<property name="jar.name" value="mathsandbox" />
+	
+	<target name="clean">
+		<delete dir="${dir.dist}" />
+	</target>
+	
+	<target name="prepare">
+		<mkdir dir="${dir.dist}" />
+	</target>
+	
+	<target name="create" depends="clean, prepare" >
+        <jar destfile="${dir.dist}/${jar.name}.jar">
+        	<manifest>
+            	<attribute name="Built-By" value="${user.name}" />
+            	<attribute name="Class-Path" value="${jar.classpath}" />
+            </manifest>
+            <fileset dir="${dir.bin}"/>
+        </jar>
+    </target>
+</project>
